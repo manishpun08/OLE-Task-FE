@@ -1,10 +1,8 @@
 export const PATH = {
   HOME: "/",
-  HOW_IT_WORKS: "/how-it-works",
-  PRICING: "/pricing",
-  BLOG: "/blogs",
-  FAQS: "/faqs",
-  CONTACT: "/contact",
+  ABOUT_US: "/about-us",
+  SERVICES: "/services",
+  NEWS: "/news",
 
   AUTH: {
     SIGNIN: "/auth/signin",

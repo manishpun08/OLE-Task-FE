@@ -10,7 +10,7 @@
   --color-primary-200: #b3a2ff;
   --color-primary-300: #9078ff;
   --color-primary-400: #7b5dff;
-  --color-primary-500: #5a35ff;
+  --color-primary-500: #4e42d9;
   --color-primary-600: #5230e8;
   --color-primary-700: #4026b5;
   --color-primary-800: #321d8c;
@@ -34,15 +34,11 @@
   --color-grey-200: #c6c6c6;
   --color-grey-300: #b0b0b0;
   --color-grey-400: #969696;
-  --color-grey-500: #757575;
+  --color-grey-500: #797979;
   --color-grey-600: #565656;
-  --color-grey-700: #1e1e1e;
+  --color-grey-700: #3b3950;
   --color-grey-800: #1b1b1b;
   --color-grey-900: #111111;
-
-  /* gray text  */
-  --color-primary-blue: #7c5cfc;
-  --color-gray3: #828282;
 
   /* error */
   --color-error: #ff0000;
@@ -50,7 +46,6 @@
   --color-border-500: #72796f;
 
   /* fonts */
-  --font-outfit: var(--font-outfit);
   --font-poppins: var(--font-poppins);
 
   /* shadcn colors  */
@@ -97,51 +92,12 @@
   @apply px-[1.5rem] lg:px-[6.25rem];
 }
 
-/* Rich Text Editor Styles */
-.rich-text-container {
-  .quill {
-    display: flex;
-    flex-direction: column;
-
-    .ql-toolbar {
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-      border-color: var(--color-border);
-      background-color: #f8f9fa;
-    }
-
-    .ql-container {
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
-      border-color: var(--color-border);
-      font-family: inherit;
-      font-size: inherit;
-      height: auto;
-
-      .ql-editor {
-        min-height: var(--editor-min-height);
-        max-height: var(--editor-max-height);
-        overflow-y: auto;
-
-        &.ql-blank::before {
-          font-style: normal;
-          color: var(--color-grey-400);
-        }
-
-        p {
-          margin-bottom: 0.5rem;
-        }
-      }
-    }
-  }
-}
-
 @utility typography-h1 {
   @apply text-[3.625rem] leading-[125%];
 }
 
 @utility typography-h2 {
-  @apply text-[2.375rem] leading-[3.3125rem];
+  @apply text-[2.25rem] leading-[130%];
 }
 
 @utility typography-h3 {
@@ -153,7 +109,7 @@
 }
 
 @utility typography-h5 {
-  @apply text-[1.5rem] leading-[2.625rem];
+  @apply text-[25px] leading-[150%];
 }
 
 @utility typography-h6 {
@@ -165,11 +121,11 @@
 }
 
 @utility typography-paragraph-large {
-  @apply text-[1.125rem] leading-[1.6875rem];
+  @apply text-[1.125rem] leading-[110.00000000000001%];
 }
 
 @utility typography-paragraph-medium {
-  @apply text-[1rem] leading-[1.625rem];
+  @apply text-[1rem] leading-[100%];
 }
 
 @utility typography-paragraph-small {
@@ -194,36 +150,6 @@ button,
 input[type="button"],
 input[type="submit"] {
   cursor: pointer;
-}
-
-/* === Hide Google sign-in logo === */
-#googleSignInButton svg,
-#googleSignInButton img,
-#googleSignInButton .gsi-material-button-icon,
-#googleSignInButton [role="button"] > div:first-child {
-  display: none !important;
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* === Center text === */
-#googleSignInButton [role="button"] {
-  justify-content: center !important;
-  color: #007cf0 !important;
-  font-size: 1rem !important;
-  font-weight: 500 !important;
-  border-radius: 0.5rem !important; /* rounded-md */
-  transition: all 0.2s ease-in-out !important;
-}
-
-/* === Hover state === */
-#googleSignInButton [role="button"]:hover {
-  color: #005bb5 !important; /* darker blue */
-  border-color: #005bb5 !important;
-  background-color: #f0f8ff !important; /* light blue tint */
 }
 
 @layer utilities {
