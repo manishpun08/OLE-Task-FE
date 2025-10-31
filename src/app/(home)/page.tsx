@@ -1,7 +1,5 @@
-import GainRealInsights from "./partials/GainRealInsights";
+import BlogList from "./partials/BlogList";
 import HomeHero from "./partials/HomeHero";
-import StartBuilding from "./partials/StartBuilding";
-import TurnFeedbackAction from "./partials/TurnFeedbackAction";
 import WhatWeDo from "./partials/WhatWeDo";
 
 const HomePage = () => {
@@ -9,9 +7,7 @@ const HomePage = () => {
     <>
       <HomeHero />
       <WhatWeDo />
-      {/* <StartBuilding />
-      <GainRealInsights />
-      <TurnFeedbackAction /> */}
+      <BlogList />
     </>
   );
 };
