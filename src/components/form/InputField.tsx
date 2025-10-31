@@ -18,7 +18,7 @@ interface InputFieldProps {
 
 const InputField = ({
   name,
-  type = "text",
+  type,
   placeholder,
   title,
   value,
@@ -63,7 +63,7 @@ const InputField = ({
       {title && (
         <Label
           htmlFor={String(name)}
-          className="typography-paragraph-medium text-grey-500 font-medium"
+          className="font-medium typography-paragraph-medium text-grey-500"
         >
           {title} {isRequired && <span className="text-error">*</span>}
         </Label>
@@ -81,11 +81,11 @@ const InputField = ({
         onWheel={handleWheel}
         className={cn(
           "typography-paragraph-small border-grey-100 focus-visible:border-primary-500 h-11.5 rounded-full border-[0.3px] px-4 focus-visible:ring-0",
-          className,
+          className
         )}
       />
       {touched && error && (
-        <p className="typography-paragraph-small text-error pl-4">
+        <p className="pl-4 typography-paragraph-small text-error">
           {error as string}
         </p>
       )}

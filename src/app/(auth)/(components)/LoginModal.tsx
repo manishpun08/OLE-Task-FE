@@ -1,13 +1,11 @@
 "use client";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { FormikProvider } from "formik";
-import Link from "next/link";
 import InputField from "@/components/form/InputField";
 import PasswordInputField from "@/components/form/PasswordInputField";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { useModal } from "@/core/context/ModalContext";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { FormikProvider } from "formik";
+import Link from "next/link";
 import { useLogin } from "../hooks/useLogin";
-import GoogleLoginButton from "./GoogleLoginButton";
 
 interface Props {
   isOpen: boolean;
@@ -16,14 +14,7 @@ interface Props {
 }
 
 const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
-  const { openModal } = useModal();
-
   const { formik, isLoading } = useLogin({ onSuccess });
-
-  const handleSwitchModal = () => {
-    onClose();
-    setTimeout(() => openModal("register"), 100);
-  };
 
   return (
     <Dialog
@@ -34,11 +25,12 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
     >
       <DialogContent className="w-[36.1875rem] overflow-hidden rounded-3xl bg-white shadow-[0px_0px_12px_0px_#00000026]">
         <DialogHeader>
-          <DialogTitle className="typography-sub-h3 text-primary-500 text-left font-medium">
-            Log In to Find Jobs
+          <DialogTitle className="font-medium text-left typography-sub-h3 text-primary-500">
+            Log In to Awwwesome
           </DialogTitle>
-          <p className="text-grey-300 typography-paragraph-medium mt-1 mb-4 w-full max-w-sm">
-            Login to find jobs and get personalized career recommendations.
+          <p className="w-full max-w-sm mt-1 mb-4 text-grey-300 typography-paragraph-medium">
+            Login to Awwwesome and collaborate with companies small to large
+            around the world.
           </p>
         </DialogHeader>
 
@@ -48,8 +40,10 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
             {/* Phone number or Email */}
             <InputField
               name="username"
-              title="Phone number"
-              placeholder="Enter your phone number"
+              title="Email"
+              placeholder="Enter your email"
+              isRequired
+              type="email"
             />
 
             {/* Password Field */}
@@ -57,13 +51,14 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
               name="password"
               title="Password"
               placeholder="Password"
+              isRequired
             />
 
             <div className="flex justify-end">
               <Link
                 onClick={onClose}
-                className="typography-paragraph-medium text-grey-500 hover:text-primary-500 transition duration-300 ease-in-out hover:underline"
-                href="/forgot-password"
+                className="transition duration-300 ease-in-out typography-paragraph-medium text-grey-500 hover:text-primary-500 hover:underline"
+                href="/#"
               >
                 Forgot Password?
               </Link>
@@ -77,7 +72,7 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
                 isLoading ? "cursor-not-allowed opacity-50" : ""
               }`}
             >
-              {isLoading ? "Signing Up..." : "Sign Up"}
+              {isLoading ? "Signing In..." : "Sign In"}
             </button>
           </form>
         </FormikProvider>
@@ -85,28 +80,14 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
         {/* Social Media Login Options */}
         <div className="flex items-center gap-4">
           <hr className="border-grey-100 flex-grow border-t-[0.4px]" />
-          <span className="text-black-200 text-sm">Or</span>
+          <span className="text-sm text-black-200">Or</span>
           <hr className="border-grey-100 flex-grow border-t-[0.4px]" />
         </div>
 
-        <div className="flex cursor-pointer items-center justify-center gap-5">
-          <GoogleLoginButton
-            isOpen={isOpen}
-            onSuccess={() => {
-              onClose();
-              onSuccess();
-            }}
-          />
-        </div>
-
         {/* Sign In Link */}
-        <p className="typography-paragraph-medium pb-2 text-center">
+        <p className="pb-2 text-center typography-paragraph-medium">
           <span className="text-grey-300">Don’t have an account?</span>{" "}
-          <button
-            type="button"
-            className="text-primary-500 cursor-pointer"
-            onClick={handleSwitchModal}
-          >
+          <button type="button" className="cursor-pointer text-primary-500">
             Sign Up
           </button>
         </p>

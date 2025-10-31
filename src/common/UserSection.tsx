@@ -11,16 +11,16 @@ const UserSection = () => {
   const { openModal } = useModal();
 
   return (
-    <div className="ml-auto hidden lg:block">
-      <div className="flex flex-shrink-0 flex-col items-center space-y-2 space-x-0 md:flex-row md:space-y-0 ">
+    <div className="hidden ml-auto lg:block">
+      <div className="flex flex-col items-center flex-shrink-0 space-x-0 space-y-2 md:flex-row md:space-y-0 ">
         {isLoggedIn ? (
           <UserDropdown sessionData={session as ISessionRoot} />
         ) : (
-          <div className="hidden items-center space-x-6 md:flex">
+          <div className="items-center hidden space-x-6 md:flex">
             <button
               type="button"
               className="bg-primary-500 typography-paragraph-medium hover:bg-primary-700 cursor-pointer items-center rounded-[4px] px-7.5 py-4 font-semibold text-white transition duration-300 ease-in-out"
-              onClick={() => openModal("register")}
+              onClick={() => openModal("login")}
             >
               Log In
             </button>
