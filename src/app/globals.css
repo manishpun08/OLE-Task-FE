@@ -36,7 +36,7 @@
   --color-grey-400: #969696;
   --color-grey-500: #797979;
   --color-grey-600: #565656;
-  --color-grey-700: #1e1e1e;
+  --color-grey-700: #3b3950;
   --color-grey-800: #1b1b1b;
   --color-grey-900: #111111;
 
@@ -97,7 +97,7 @@
 }
 
 @utility typography-h2 {
-  @apply text-[2.375rem] leading-[3.3125rem];
+  @apply text-[2.25rem] leading-[130%];
 }
 
 @utility typography-h3 {
@@ -109,7 +109,7 @@
 }
 
 @utility typography-h5 {
-  @apply text-[1.5rem] leading-[2.625rem];
+  @apply text-[25px] leading-[150%];
 }
 
 @utility typography-h6 {
@@ -121,7 +121,7 @@
 }
 
 @utility typography-paragraph-large {
-  @apply text-[1.125rem] leading-[1.6875rem];
+  @apply text-[1.125rem] leading-[110.00000000000001%];
 }
 
 @utility typography-paragraph-medium {
