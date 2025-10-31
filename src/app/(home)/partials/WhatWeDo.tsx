@@ -1,5 +1,5 @@
-import { services } from "@/data/serviceData";
 import Image from "next/image";
+import { services } from "@/data/serviceData";
 
 const WhatWeDo = () => {
   return (
@@ -15,7 +15,8 @@ const WhatWeDo = () => {
             className="flex flex-col items-center mb-10 text-center md:mb-0"
           >
             <div
-              className={`bg-[${service?.bg}] w-[91px] h-[90px] rounded-[20px] flex items-center justify-center`}
+              className="w-[91px] h-[90px] rounded-[20px] flex items-center justify-center"
+              style={{ backgroundColor: service?.bg }}
             >
               <Image
                 src={service?.icon}
