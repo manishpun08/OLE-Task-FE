@@ -20,14 +20,14 @@ const Navbar = () => {
   return (
     <nav className="relative">
       {/* Desktop Navigation */}
-      <ul className="hidden gap-10.5 md:flex">
+      <ul className="hidden gap-12 md:flex ">
         {staticNavbar?.map((item) => {
           const isActive = pathname === item.url;
           return (
             <li key={item?.name}>
               <Link
                 href={item?.url}
-                className={`group typography-paragraph-small relative font-normal transition-colors duration-200 ${isActive ? "text-primary-500" : "text-grey-800 hover:text-primary-500"}`}
+                className={`group typography-paragraph-medium relative font-normal transition-colors duration-200 ${isActive ? "text-primary-500 font-semibold" : "text-grey-500 hover:text-primary-500"}`}
               >
                 {item?.name}
                 <span

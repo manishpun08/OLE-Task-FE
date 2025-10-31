@@ -6,19 +6,15 @@ export const staticNavbar = [
     url: "/",
   },
   {
-    name: "How it Works",
-    url: PATH.HOW_IT_WORKS,
+    name: "About us",
+    url: PATH.ABOUT_US,
   },
   {
-    name: "Pricing",
-    url: PATH.PRICING,
+    name: "Services",
+    url: PATH.SERVICES,
   },
   {
-    name: "Blogs",
-    url: PATH.BLOG,
-  },
-  {
-    name: "FAQs",
-    url: PATH.FAQS,
+    name: "News",
+    url: PATH.NEWS,
   },
 ];

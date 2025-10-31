@@ -1,15 +1,9 @@
-import type { Metadata } from "next";
-import { Outfit, Poppins } from "next/font/google";
 import Footer from "@/common/Footer";
 import Header from "@/common/Header";
+import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import Providers from "./Provider";
 import "./globals.css";
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -18,9 +12,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "SurveyShala || Home",
+  title: "Awwwesome || Home",
   description:
-    "Design surveys in minutes with complete flexibility. Choose from ready-made templates or build fully custom surveys, add your questions easily, & have them ready to share in no time.",
+    "Awwwesome is a leading digital solutions provider, offering innovative web and mobile app development services to help businesses thrive in the digital age.",
 };
 
 export default function RootLayout({
@@ -33,9 +27,7 @@ export default function RootLayout({
       <head>
         <script src="https://accounts.google.com/gsi/client" async defer />
       </head>
-      <body
-        className={`${outfit.variable} ${poppins.variable} font-outfit antialiased`}
-      >
+      <body className={`${poppins.variable} font-poppins antialiased`}>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Header />
