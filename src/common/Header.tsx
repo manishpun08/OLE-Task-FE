@@ -3,7 +3,7 @@ import Link from "next/link";
 import Navbar from "./Navbar";
 import UserSection from "./UserSection";
 
-const Header = async () => {
+const Header = () => {
   return (
     <header className="border-b-grey-100 sticky top-0 left-0 z-40 w-full border-b-[0.35px] bg-white py-7 ">
       <div className="padding-x relative flex items-center">

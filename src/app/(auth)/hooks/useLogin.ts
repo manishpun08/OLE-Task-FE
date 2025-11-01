@@ -1,20 +1,34 @@
 "use client";
 
 import { useFormik } from "formik";
-import { signIn } from "next-auth/react";
-import { usePostDataMutation } from "@/api/api";
-import { endpoints } from "@/api/endpoints";
-import handleErrors, { type ApiResponse } from "@/helper/error-helper";
+import { useRouter } from "next/navigation";
 import { LoginByPasswordSchema } from "@/helper/validation";
 import { showErrorMessage, showSuccessMessage } from "@/utils/toast";
+import { PATH } from "@/core/constants/path";
 
 interface IFormValues {
   username: string;
   password: string;
 }
 
+// Mock credentials
+const MOCK_CREDENTIALS = [
+  {
+    email: "admin@example.com",
+    password: "password123",
+    role: "admin",
+    token: "mock-admin-token-123",
+  },
+  {
+    email: "viewer@example.com",
+    password: "password123",
+    role: "viewer",
+    token: "mock-viewer-token-456",
+  },
+];
+
 export const useLogin = ({ onSuccess }: { onSuccess: () => void }) => {
-  const [postSignUp, { isLoading }] = usePostDataMutation();
+  const router = useRouter();
 
   const formik = useFormik<IFormValues>({
     initialValues: {
@@ -26,52 +40,48 @@ export const useLogin = ({ onSuccess }: { onSuccess: () => void }) => {
     validateOnBlur: true,
     onSubmit: async (values) => {
       try {
-        const response = (await postSignUp({
-          url: `${endpoints.AUTH.LOGIN_BY_PASSWORD}`,
-          data: {
-            ...values,
-          },
-        })) as ApiResponse;
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        if (response.error) {
-          console.error("Signup error:", response.error);
-          handleErrors(response as ApiResponse, formik.setErrors);
-          showErrorMessage(response.error.data.message);
-        }
+        // Check mock credentials
+        const user = MOCK_CREDENTIALS.find(
+          (cred) =>
+            cred.email === values.username && cred.password === values.password
+        );
 
-        if (response.data) {
-          showSuccessMessage(response.data.message);
+        if (user) {
+          // Store user info in localStorage
+          const userInfo = {
+            email: user.email,
+            role: user.role,
+            token: user.token,
+          };
 
-          //sign-in
-          const signInResult = await signIn("credentials", {
-            redirect: false,
-            username: values.username,
-            password: values.password,
-          });
+          localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-          if (signInResult?.ok) {
-            formik.resetForm();
-            onSuccess();
-          } else {
-            console.error("Auto sign-in failed:", signInResult?.error);
-            formik.setErrors({
-              password: "Auto sign-in failed. Please try logging in manually.",
-            });
-          }
+          showSuccessMessage(`Welcome back! Logged in as ${user.role}.`);
+
+          // Reset form and close modal
+          formik.resetForm();
+          onSuccess();
+
+          // Redirect to dashboard
+          router.push(PATH.DASHBOARD);
         } else {
-          console.warn(
-            "Unexpected response status:",
-            response.error.data.message,
-          );
+          showErrorMessage("Invalid email or password. Please try again.");
+          formik.setErrors({
+            password: "Invalid credentials",
+          });
         }
       } catch (error) {
-        console.error("Failed to submit signup form:", error);
+        console.error("Login error:", error);
+        showErrorMessage("An error occurred during login. Please try again.");
       }
     },
   });
 
   return {
     formik,
-    isLoading,
+    isLoading: formik.isSubmitting,
   };
 };
