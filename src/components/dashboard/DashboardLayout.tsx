@@ -71,7 +71,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       {sidebarOpen && (
         <button
           type="button"
-          className="bg-opacity-50 fixed inset-0 z-40 cursor-pointer bg-black lg:hidden"
+          className="bg-opacity-50 fixed inset-0 z-40 cursor-pointer bg-black/60 lg:hidden"
           onClick={closeMobileSidebar}
           onKeyDown={(e) => {
             if (e.key === "Escape") {

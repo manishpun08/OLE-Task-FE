@@ -70,7 +70,7 @@ const UsersPage = () => {
             <button
               type="button"
               onClick={handleRefresh}
-              className="flex items-center space-x-2 rounded-lg bg-gray-600 px-3 py-2 text-sm font-medium text-white transition duration-200 hover:bg-gray-700 sm:px-4 sm:text-base"
+              className="bg-primary-500 hover:bg-primary-600 flex items-center space-x-2 rounded-lg px-3 py-2 text-sm font-medium text-white transition duration-200 sm:px-4 sm:text-base"
             >
               <RefreshCw className="h-4 w-4" />
               <span className="hidden sm:inline">Refresh</span>
