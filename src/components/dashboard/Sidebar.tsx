@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { PATH } from "@/core/constants/path";
 import { navigationItems } from "./SidebarItems";
 import { ChevronLeft, ChevronRight, LogOut, User } from "lucide-react";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -16,10 +18,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
   const router = useRouter();
   const pathname = usePathname();
   const { user, logout } = useAuth();
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
+    setShowLogoutDialog(true);
+  };
+
+  const handleLogoutConfirm = () => {
     logout();
     router.push(PATH.HOME);
+    setShowLogoutDialog(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutDialog(false);
   };
 
   const filteredNavigationItems = navigationItems.filter((item) => {
@@ -116,7 +128,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
       <div className="border-t border-gray-200 p-2">
         <button
           type="button"
-          onClick={handleLogout}
+          onClick={handleLogoutClick}
           className={`w-full group flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors ${
             isCollapsed ? "justify-center" : ""
           }`}
@@ -127,6 +139,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
           {!isCollapsed && <span>Logout</span>}
         </button>
       </div>
+
+      {/* Logout Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={showLogoutDialog}
+        onClose={handleLogoutCancel}
+        onConfirm={handleLogoutConfirm}
+        title="Confirm Logout"
+        message="Are you sure you want to logout? You will need to sign in again to access your account."
+        confirmText="Logout"
+        cancelText="Cancel"
+        type="warning"
+      />
     </div>
   );
 };
