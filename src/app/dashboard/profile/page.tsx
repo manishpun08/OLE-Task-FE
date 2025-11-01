@@ -9,11 +9,11 @@ const ProfilePage = () => {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
-    name: user?.email?.split("@")[0] || "User",
-    email: user?.email || "",
+    name: user?.role || "User",
+    email: user?.email || "email@example.com",
     role: user?.role || "user",
-    joinDate: "2024-01-15", // Mock date
-    lastLogin: "2024-11-01", // Mock date
+    joinDate: "2024-01-15",
+    lastLogin: "2024-11-01",
   });
 
   const [editData, setEditData] = useState({ ...profileData });

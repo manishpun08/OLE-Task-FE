@@ -4,51 +4,13 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { PATH } from "@/core/constants/path";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Home,
-  Users,
-  BarChart3,
-  User,
-  LogOut,
-} from "lucide-react";
+import { navigationItems } from "./SidebarItems";
+import { ChevronLeft, ChevronRight, LogOut, User } from "lucide-react";
 
 interface SidebarProps {
   isCollapsed: boolean;
   onToggle: () => void;
 }
-
-interface NavigationItem {
-  name: string;
-  href: string;
-  icon: React.ElementType;
-  adminOnly?: boolean;
-}
-
-const navigationItems: NavigationItem[] = [
-  {
-    name: "Dashboard",
-    href: PATH.DASHBOARD_ROUTES.MAIN,
-    icon: Home,
-  },
-  {
-    name: "Users Table",
-    href: PATH.DASHBOARD_ROUTES.USERS,
-    icon: Users,
-    adminOnly: true,
-  },
-  {
-    name: "Chart Page",
-    href: PATH.DASHBOARD_ROUTES.CHARTS,
-    icon: BarChart3,
-  },
-  {
-    name: "Profile Page",
-    href: PATH.DASHBOARD_ROUTES.PROFILE,
-    icon: User,
-  },
-];
 
 const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
   const router = useRouter();
