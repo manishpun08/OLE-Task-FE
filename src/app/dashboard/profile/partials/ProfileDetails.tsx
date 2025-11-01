@@ -1,4 +1,4 @@
-import { Mail, Shield, Calendar } from "lucide-react";
+import { Calendar, Mail, Shield } from "lucide-react";
 import type { ProfileDetailsProps } from "../interface/profile.interface";
 
 export const ProfileDetails = ({

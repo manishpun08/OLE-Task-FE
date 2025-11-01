@@ -1,6 +1,6 @@
 import { AccountSecurity } from "./AccountSecurity";
-import { RecentActivity } from "./RecentActivity";
 import { AccountStats } from "./AccountStats";
+import { RecentActivity } from "./RecentActivity";
 
 export const ProfileSidebar = () => (
   <div className="space-y-6">

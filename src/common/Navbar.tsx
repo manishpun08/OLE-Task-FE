@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { staticNavbar } from "@/data/staticNavbar";
+import { useModal } from "@/core/context/ModalContext";
 
 const Navbar = () => {
+  const { openModal } = useModal();
+
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,10 +20,23 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav className="relative">
       {/* Desktop Navigation */}
-      <ul className="hidden gap-12 md:flex ">
+      <ul className="hidden items-center gap-12 md:flex">
         {staticNavbar?.map((item) => {
           const isActive = pathname === item.url;
           return (
@@ -43,31 +59,35 @@ const Navbar = () => {
       <button
         type="button"
         onClick={toggleMenu}
-        className="flex h-8 w-8 flex-col items-center justify-center space-y-1 md:hidden"
+        className="relative z-[60] flex h-10 w-10 flex-col items-center justify-center space-y-1 rounded-md bg-white transition-colors duration-200 md:hidden"
         aria-label="Toggle menu"
+        aria-expanded={isMenuOpen}
       >
         <span
-          className={`bg-grey-400 block h-0.5 w-6 transition-transform duration-200 ${
-            isMenuOpen ? "translate-y-2 rotate-45" : ""
+          className={`bg-grey-600 block h-0.5 w-5 transition-all duration-300 ${
+            isMenuOpen ? "translate-y-1.5 rotate-45" : ""
           }`}
         />
         <span
-          className={`bg-grey-400 block h-0.5 w-6 transition-opacity duration-200 ${
+          className={`bg-grey-600 block h-0.5 w-5 transition-all duration-300 ${
             isMenuOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`bg-grey-400 block h-0.5 w-6 transition-transform duration-200 ${
-            isMenuOpen ? "-translate-y-2 -rotate-45" : ""
+          className={`bg-grey-600 block h-0.5 w-5 transition-all duration-300 ${
+            isMenuOpen ? "-translate-y-1.5 -rotate-45" : ""
           }`}
         />
       </button>
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
+      {/* Mobile Navigation Menu */}
+      <div>
+        {/* Background overlay */}
         <button
           type="button"
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          className={`fixed inset-0 z-40 bg-black/30 transition-opacity duration-300 md:hidden ${
+            isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
           onClick={closeMenu}
           onKeyDown={(e) => {
             if (e.key === "Escape") {
@@ -76,45 +96,71 @@ const Navbar = () => {
           }}
           aria-label="Close menu overlay"
         />
-      )}
 
-      {/* Mobile Navigation Menu */}
-      <div
-        className={`fixed top-0 right-0 z-50 h-full w-64 transform bg-white shadow-lg transition-transform duration-300 md:hidden ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex justify-end p-4">
-          <button
-            type="button"
-            onClick={closeMenu}
-            className="text-grey-400 hover:text-primary-500 flex h-8 w-8 items-center justify-center"
-            aria-label="Close menu"
-          >
-            <span className="text-2xl">×</span>
-          </button>
-        </div>
+        {/* Menu content */}
+        <div
+          className={`fixed top-0 left-0 z-50 w-full overflow-hidden bg-white transition-all duration-500 ease-in-out md:hidden ${
+            isMenuOpen ? "h-screen translate-y-0" : "h-0 -translate-y-full"
+          }`}
+        >
+          {/* Navigation items centered */}
+          <div className="flex h-full flex-col items-center justify-center pb-20">
+            <ul className="flex flex-col space-y-8 text-center">
+              {staticNavbar.map((item, index) => {
+                const isActive = pathname === item?.url;
+                return (
+                  <li
+                    key={item?.name}
+                    className={`transition-all duration-500 ease-out ${
+                      isMenuOpen
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-4 opacity-0"
+                    }`}
+                    style={{
+                      transitionDelay: isMenuOpen ? `${index * 100}ms` : "0ms",
+                    }}
+                  >
+                    <Link
+                      href={item?.url}
+                      onClick={closeMenu}
+                      className={`typography-paragraph-large block rounded-lg px-6 py-4 font-normal transition-all duration-300 ${
+                        isActive
+                          ? "text-primary-500 font-semibold"
+                          : "text-grey-600 hover:text-primary-500"
+                      }`}
+                    >
+                      {item?.name}
+                    </Link>
+                  </li>
+                );
+              })}
 
-        <ul className="flex flex-col space-y-2 px-6">
-          {staticNavbar.map((item) => {
-            const isActive = pathname === item?.url;
-            return (
-              <li key={item?.name}>
-                <Link
-                  href={item?.url}
-                  onClick={closeMenu}
-                  className={`typography-paragraph-large block border-l-4 px-2 py-3 font-normal transition-colors duration-200 ${
-                    isActive
-                      ? "text-primary-500 border-primary-500 bg-primary-50"
-                      : "text-grey-400 hover:text-primary-500 hover:border-primary-500 hover:bg-grey-50 border-transparent"
-                  }`}
+              <li
+                className={`pt-4 transition-all duration-500 ease-out ${
+                  isMenuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-4 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isMenuOpen
+                    ? `${staticNavbar.length * 100 + 200}ms`
+                    : "0ms",
+                }}
+              >
+                <button
+                  type="button"
+                  className="bg-primary-500 typography-paragraph-medium hover:bg-primary-700 cursor-pointer items-center rounded-[4px] px-7.5 py-4 font-semibold text-white transition duration-300 ease-in-out"
+                  onClick={() => {
+                    openModal("login");
+                    closeMenu();
+                  }}
                 >
-                  {item?.name}
-                </Link>
+                  Log In
+                </button>
               </li>
-            );
-          })}
-        </ul>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
   );

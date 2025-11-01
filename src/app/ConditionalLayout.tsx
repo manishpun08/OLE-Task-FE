@@ -15,7 +15,7 @@ const ConditionalLayout = ({ children }: ConditionalLayoutProps) => {
   const routesWithoutHeaderFooter = ["/dashboard"];
 
   const shouldShowHeaderFooter = !routesWithoutHeaderFooter.some((route) =>
-    pathname.startsWith(route)
+    pathname.startsWith(route),
   );
 
   if (shouldShowHeaderFooter) {

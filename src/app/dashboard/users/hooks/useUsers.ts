@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { showErrorMessage, showSuccessMessage } from "@/utils/toast";
 import type { User } from "../interface/user.interface";
 
@@ -20,7 +20,7 @@ export const useUsers = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
+        "https://jsonplaceholder.typicode.com/users",
       );
       if (!response.ok) {
         throw new Error("Failed to fetch users");
@@ -44,7 +44,7 @@ export const useUsers = () => {
         userData.company.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
-        userData.username.toLowerCase().includes(searchTerm.toLowerCase())
+        userData.username.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [users, searchTerm]);
 
@@ -86,7 +86,7 @@ export const useUsers = () => {
   // Reset page when search changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, []);
 
   // Handlers
   const handlePageChange = useCallback((page: number) => {
@@ -122,7 +122,7 @@ export const useUsers = () => {
             userData.company.name
               .toLowerCase()
               .includes(searchTerm.toLowerCase()) ||
-            userData.username.toLowerCase().includes(searchTerm.toLowerCase())
+            userData.username.toLowerCase().includes(searchTerm.toLowerCase()),
         );
       const newTotalPages = Math.ceil(newFilteredUsers.length / USERS_PER_PAGE);
       if (currentPage > newTotalPages && newTotalPages > 0) {
