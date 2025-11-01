@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import { useEffect } from "react";
 import type { User } from "../interface/user.interface";
 
 interface UserDetailModalProps {
@@ -14,36 +15,58 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  // Handle escape key and body scroll
+  useEffect(() => {
+    if (isOpen) {
+      const handleEscape = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          onClose();
+        }
+      };
+
+      // Prevent body scroll
+      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", handleEscape);
+
+      return () => {
+        document.body.style.overflow = "unset";
+        document.removeEventListener("keydown", handleEscape);
+      };
+    }
+  }, [isOpen, onClose]);
+
   if (!isOpen || !user) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        {/* Background overlay */}
-        <button
-          type="button"
-          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-          onClick={onClose}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") {
-              onClose();
-            }
-          }}
-          aria-label="Close modal"
-        />
+    <div className="fixed inset-0 z-[9999] overflow-y-auto">
+      {/* Background overlay */}
+      <div
+        className="fixed inset-0 bg-black/80 transition-opacity"
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
+      {/* Modal container */}
+      <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         {/* Modal panel */}
-        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+        <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
           {/* Header */}
           <div className="bg-white px-6 py-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-medium text-gray-900">
-                User Details
-              </h3>
+              <div className="flex items-center space-x-3">
+                <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-lg font-medium text-blue-600">
+                    {user.name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <h3 className="text-lg font-medium text-gray-900">
+                  {user.name} - Details
+                </h3>
+              </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors rounded-full p-1 hover:bg-gray-100"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -51,7 +74,7 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
           </div>
 
           {/* Content */}
-          <div className="bg-white px-6 py-6">
+          <div className="bg-white px-6 py-6 max-h-96 overflow-y-auto">
             <div className="space-y-6">
               {/* Personal Information */}
               <div>

@@ -107,94 +107,108 @@ const UserTable: React.FC<UserTableProps> = ({
   return (
     <div className="bg-white rounded-lg shadow">
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                User Info
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Company
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Contact
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Location
-              </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {users.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 h-10 w-10">
-                      <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                        <span className="text-sm font-medium text-blue-600">
-                          {user.name.charAt(0).toUpperCase()}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">
-                        {user.name}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        @{user.username}
-                      </div>
-                      <div className="text-sm text-gray-500">{user.email}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">
-                    {user.company.name}
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {user.company.catchPhrase}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{user.phone}</div>
-                  <div className="text-sm text-gray-500">{user.website}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">
-                    {user.address.city}
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {user.address.street}, {user.address.suite}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <div className="flex items-center justify-end space-x-2">
-                    <button
-                      type="button"
-                      onClick={() => onView(user)}
-                      className="text-blue-600 hover:text-blue-900 p-2 rounded-md hover:bg-blue-50 transition-colors"
-                      title="View user details"
-                    >
-                      <Eye className="h-4 w-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onDelete(user.id)}
-                      className="text-red-600 hover:text-red-900 p-2 rounded-md hover:bg-red-50 transition-colors"
-                      title="Delete user"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </div>
-                </td>
+      <div className="overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  User
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
+                  Company
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
+                  Contact
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden xl:table-cell">
+                  Location
+                </th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {users.map((user) => (
+                <tr key={user.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-4">
+                    <div className="flex items-center">
+                      <div className="flex-shrink-0 h-10 w-10">
+                        <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                          <span className="text-sm font-medium text-blue-600">
+                            {user.name.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="ml-3 min-w-0 flex-1">
+                        <div className="text-sm font-medium text-gray-900 truncate">
+                          {user.name}
+                        </div>
+                        <div className="text-sm text-gray-500 truncate">
+                          {user.email}
+                        </div>
+                        {/* Show additional info on mobile */}
+                        <div className="md:hidden mt-1">
+                          <div className="text-xs text-gray-500 truncate">
+                            {user.company.name}
+                          </div>
+                          <div className="text-xs text-gray-500 truncate">
+                            {user.phone}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 hidden md:table-cell">
+                    <div className="text-sm text-gray-900 truncate max-w-xs">
+                      {user.company.name}
+                    </div>
+                    <div className="text-sm text-gray-500 truncate max-w-xs">
+                      {user.company.catchPhrase}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 hidden lg:table-cell">
+                    <div className="text-sm text-gray-900 truncate max-w-xs">
+                      {user.phone}
+                    </div>
+                    <div className="text-sm text-gray-500 truncate max-w-xs">
+                      {user.website}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 hidden xl:table-cell">
+                    <div className="text-sm text-gray-900 truncate max-w-xs">
+                      {user.address.city}
+                    </div>
+                    <div className="text-sm text-gray-500 truncate max-w-xs">
+                      {user.address.street}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 text-right text-sm font-medium">
+                    <div className="flex items-center justify-end space-x-1">
+                      <button
+                        type="button"
+                        onClick={() => onView(user)}
+                        className="text-blue-600 hover:text-blue-900 p-1.5 rounded-md hover:bg-blue-50 transition-colors"
+                        title="View user details"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => onDelete(user.id)}
+                        className="text-red-600 hover:text-red-900 p-1.5 rounded-md hover:bg-red-50 transition-colors"
+                        title="Delete user"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {users.length === 0 && !loading && (
           <div className="text-center py-12">
