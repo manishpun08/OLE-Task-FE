@@ -11,4 +11,11 @@ export const PATH = {
     SIGNIN: "/auth/signin",
     SIGNUP: "/auth/signup",
   },
+
+  DASHBOARD_ROUTES: {
+    MAIN: "/dashboard",
+    USERS: "/dashboard/users",
+    CHARTS: "/dashboard/charts",
+    PROFILE: "/dashboard/profile",
+  },
 };
