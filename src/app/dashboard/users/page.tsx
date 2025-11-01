@@ -1,12 +1,12 @@
 "use client";
 
+import { Filter, RefreshCw, Search } from "lucide-react";
 import ConfirmDialog from "@/components/ConfirmDialog";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { useAuth } from "@/hooks/useAuth";
-import { Filter, RefreshCw, Search } from "lucide-react";
-import UserTable from "./partials/UserTable";
 import { useUsers } from "./hooks/useUsers";
 import UserDetailModal from "./partials/UserDetailModal";
+import UserTable from "./partials/UserTable";
 
 const UsersPage = () => {
   const { user } = useAuth();

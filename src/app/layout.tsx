@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import Providers from "./Provider";
 import ConditionalLayout from "./ConditionalLayout";
+import Providers from "./Provider";
 import "./globals.css";
 
 const poppins = Poppins({

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { showErrorMessage, showSuccessMessage } from "@/utils/toast";
 import type { User } from "../interface/user.interface";
 
@@ -86,7 +86,7 @@ export const useUsers = () => {
   // Reset page when search changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, []);
 
   // Handlers
   const handlePageChange = useCallback((page: number) => {

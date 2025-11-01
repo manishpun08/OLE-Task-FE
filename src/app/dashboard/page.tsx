@@ -1,7 +1,7 @@
 "use client";
 
-import { useAuth } from "@/hooks/useAuth";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import { useAuth } from "@/hooks/useAuth";
 
 const Dashboard = () => {
   const { user } = useAuth();

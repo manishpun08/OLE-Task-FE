@@ -1,9 +1,10 @@
 "use client";
 
-import DashboardLayout from "@/components/dashboard/DashboardLayout";
-import { useAuth } from "@/hooks/useAuth";
 import { TrendingUp } from "lucide-react";
 import { useState } from "react";
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import { chartData } from "@/data/chartData";
+import { useAuth } from "@/hooks/useAuth";
 import {
   ChartsHeader,
   DeviceUsageChart,
@@ -14,7 +15,6 @@ import {
   UserGrowthChart,
   UserRolesSection,
 } from "./partials";
-import { chartData } from "@/data/chartData";
 
 const ChartsPage = () => {
   const { user } = useAuth();

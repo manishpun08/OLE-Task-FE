@@ -2,9 +2,9 @@
 
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
+import { PATH } from "@/core/constants/path";
 import { LoginByPasswordSchema } from "@/helper/validation";
 import { showErrorMessage, showSuccessMessage } from "@/utils/toast";
-import { PATH } from "@/core/constants/path";
 
 interface IFormValues {
   username: string;

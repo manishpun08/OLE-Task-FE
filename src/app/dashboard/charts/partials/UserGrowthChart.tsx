@@ -1,14 +1,14 @@
+import { BarChart3 } from "lucide-react";
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
-import { BarChart3 } from "lucide-react";
 import type { UserGrowthChartProps } from "../interface/charts.interface";
 
 export const UserGrowthChart = ({ data }: UserGrowthChartProps) => (

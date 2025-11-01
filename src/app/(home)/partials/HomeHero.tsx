@@ -5,13 +5,13 @@ import hero from "@/assets/home/hero-image.svg";
 
 const HomeHero = () => {
   return (
-    <div className="my-10.5 padding-x mb-[5rem] grid grid-cols-2 items-center gap-8">
+    <div className="padding-x my-10.5 mb-[5rem] grid grid-cols-2 items-center gap-8">
       {/* text section */}
       <div className="w-full max-w-[500px]">
         <h1 className="typography-h2 text-grey-700 font-bold [text-shadow:0px_4px_4px_rgba(0,0,0,0.25)]">
           We do the work you stay focused on your customers.
         </h1>
-        <p className="typography-paragraph-medium leading-[150%] mt-5 mb-9 font-normal text-grey-500">
+        <p className="typography-paragraph-medium text-grey-500 mt-5 mb-9 leading-[150%] font-normal">
           Awwwsome. is a digital agency passionate about storytelling, visual
           design, and technology. We collaborate with companies small to large
           around the world to help them engage their audiences and build brand
@@ -31,7 +31,7 @@ const HomeHero = () => {
           </button>
           <button
             type="button"
-            className="bg-[#4E42D92E] typography-paragraph-medium hover:bg-primary-100 cursor-pointer items-center rounded-[4px] px-7.5 py-4 font-semibold text-primary-500 transition duration-300 ease-in-out"
+            className="typography-paragraph-medium hover:bg-primary-100 text-primary-500 cursor-pointer items-center rounded-[4px] bg-[#4E42D92E] px-7.5 py-4 font-semibold transition duration-300 ease-in-out"
           >
             About Us
           </button>
@@ -39,7 +39,7 @@ const HomeHero = () => {
       </div>
 
       {/* image section */}
-      <div className=" h-[584px] w-[578px] ">
+      <div className="h-[584px] w-[578px]">
         <Image
           src={hero}
           alt="hero"

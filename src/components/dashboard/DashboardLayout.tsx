@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
-import { PATH } from "@/core/constants/path";
+import { useEffect, useState } from "react";
 import Sidebar from "@/components/dashboard/Sidebar";
+import { PATH } from "@/core/constants/path";
+import { useAuth } from "@/hooks/useAuth";
 import CustomLoader from "../CustomLoader";
 
 interface DashboardLayoutProps {

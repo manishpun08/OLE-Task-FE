@@ -1,10 +1,10 @@
 "use client";
 
-import { useAuth } from "@/hooks/useAuth";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
-import type { ProfileData } from "./interface/profile.interface";
+import { useAuth } from "@/hooks/useAuth";
 import { useProfileEdit } from "./hooks/useProfileEdit";
-import { ProfileHeader, ProfileCard, ProfileSidebar } from "./partials";
+import type { ProfileData } from "./interface/profile.interface";
+import { ProfileCard, ProfileHeader, ProfileSidebar } from "./partials";
 
 const ProfilePage = () => {
   const { user } = useAuth();
