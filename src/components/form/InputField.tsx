@@ -73,7 +73,7 @@ const InputField = ({
         onWheel={handleWheel}
         className={cn(
           "typography-paragraph-small border-grey-100 focus-visible:border-primary-500 h-11.5 rounded-full border-[0.3px] px-4 focus-visible:ring-0",
-          className
+          className,
         )}
         {...field}
       />

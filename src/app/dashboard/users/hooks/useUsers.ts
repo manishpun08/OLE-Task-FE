@@ -20,7 +20,7 @@ export const useUsers = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
+        "https://jsonplaceholder.typicode.com/users",
       );
       if (!response.ok) {
         throw new Error("Failed to fetch users");
@@ -44,7 +44,7 @@ export const useUsers = () => {
         userData.company.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
-        userData.username.toLowerCase().includes(searchTerm.toLowerCase())
+        userData.username.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [users, searchTerm]);
 
@@ -122,7 +122,7 @@ export const useUsers = () => {
             userData.company.name
               .toLowerCase()
               .includes(searchTerm.toLowerCase()) ||
-            userData.username.toLowerCase().includes(searchTerm.toLowerCase())
+            userData.username.toLowerCase().includes(searchTerm.toLowerCase()),
         );
       const newTotalPages = Math.ceil(newFilteredUsers.length / USERS_PER_PAGE);
       if (currentPage > newTotalPages && newTotalPages > 0) {
