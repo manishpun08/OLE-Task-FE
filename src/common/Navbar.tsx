@@ -81,62 +81,87 @@ const Navbar = () => {
       </button>
 
       {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <>
-          {/* Background overlay */}
-          <button
-            type="button"
-            className="fixed inset-0 z-40 bg-black/30 md:hidden"
-            onClick={closeMenu}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                closeMenu();
-              }
-            }}
-            aria-label="Close menu overlay"
-          />
+      <div>
+        {/* Background overlay */}
+        <button
+          type="button"
+          className={`fixed inset-0 z-40 bg-black/30 transition-opacity duration-300 md:hidden ${
+            isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
+          onClick={closeMenu}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              closeMenu();
+            }
+          }}
+          aria-label="Close menu overlay"
+        />
 
-          {/* Menu content */}
-          <div className="fixed top-0 left-0 z-50 h-screen w-full overflow-hidden bg-white md:hidden">
-            {/* Navigation items centered */}
-            <div className="flex h-full flex-col items-center justify-center pb-20">
-              <ul className="flex flex-col space-y-8 text-center">
-                {staticNavbar.map((item) => {
-                  const isActive = pathname === item?.url;
-                  return (
-                    <li key={item?.name}>
-                      <Link
-                        href={item?.url}
-                        onClick={closeMenu}
-                        className={`typography-paragraph-large block rounded-lg px-6 py-4 font-normal transition-all duration-300 ${
-                          isActive
-                            ? "text-primary-500 font-semibold"
-                            : "text-grey-600 hover:text-primary-500"
-                        }`}
-                      >
-                        {item?.name}
-                      </Link>
-                    </li>
-                  );
-                })}
-
-                <li className="pt-4">
-                  <button
-                    type="button"
-                    className="bg-primary-500 typography-paragraph-medium hover:bg-primary-700 cursor-pointer items-center rounded-[4px] px-7.5 py-4 font-semibold text-white transition duration-300 ease-in-out"
-                    onClick={() => {
-                      openModal("login");
-                      closeMenu();
+        {/* Menu content */}
+        <div
+          className={`fixed top-0 left-0 z-50 w-full overflow-hidden bg-white transition-all duration-500 ease-in-out md:hidden ${
+            isMenuOpen ? "h-screen translate-y-0" : "h-0 -translate-y-full"
+          }`}
+        >
+          {/* Navigation items centered */}
+          <div className="flex h-full flex-col items-center justify-center pb-20">
+            <ul className="flex flex-col space-y-8 text-center">
+              {staticNavbar.map((item, index) => {
+                const isActive = pathname === item?.url;
+                return (
+                  <li
+                    key={item?.name}
+                    className={`transition-all duration-500 ease-out ${
+                      isMenuOpen
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-4 opacity-0"
+                    }`}
+                    style={{
+                      transitionDelay: isMenuOpen ? `${index * 100}ms` : "0ms",
                     }}
                   >
-                    Log In
-                  </button>
-                </li>
-              </ul>
-            </div>
+                    <Link
+                      href={item?.url}
+                      onClick={closeMenu}
+                      className={`typography-paragraph-large block rounded-lg px-6 py-4 font-normal transition-all duration-300 ${
+                        isActive
+                          ? "text-primary-500 font-semibold"
+                          : "text-grey-600 hover:text-primary-500"
+                      }`}
+                    >
+                      {item?.name}
+                    </Link>
+                  </li>
+                );
+              })}
+
+              <li
+                className={`pt-4 transition-all duration-500 ease-out ${
+                  isMenuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-4 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isMenuOpen
+                    ? `${staticNavbar.length * 100 + 200}ms`
+                    : "0ms",
+                }}
+              >
+                <button
+                  type="button"
+                  className="bg-primary-500 typography-paragraph-medium hover:bg-primary-700 cursor-pointer items-center rounded-[4px] px-7.5 py-4 font-semibold text-white transition duration-300 ease-in-out"
+                  onClick={() => {
+                    openModal("login");
+                    closeMenu();
+                  }}
+                >
+                  Log In
+                </button>
+              </li>
+            </ul>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </nav>
   );
 };
