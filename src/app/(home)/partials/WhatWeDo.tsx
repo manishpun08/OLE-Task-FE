@@ -4,18 +4,18 @@ import { services } from "@/data/serviceData";
 const WhatWeDo = () => {
   return (
     <div>
-      <h2 className="text-center text-gray-500 font-semibold typography-h3 leading-[178%] tracking-[1%] mb-10">
+      <h2 className="typography-h3 mb-10 text-center leading-[178%] font-semibold tracking-[1%] text-gray-500">
         What we do
       </h2>
 
-      <div className="flex flex-col items-center mb-20 text-center md:flex-row md:justify-center md:gap-[72px]">
+      <div className="padding-x mb-20 flex flex-col items-center text-center md:flex-row md:gap-[72px]">
         {services.map((service) => (
           <div
             key={service?.id}
-            className="flex flex-col items-center mb-10 text-center md:mb-0"
+            className="mb-10 flex flex-col items-center text-center md:mb-0"
           >
             <div
-              className="w-[91px] h-[90px] rounded-[20px] flex items-center justify-center"
+              className="flex h-[90px] w-[91px] items-center justify-center rounded-[20px]"
               style={{ backgroundColor: service?.bg }}
             >
               <Image
@@ -27,11 +27,11 @@ const WhatWeDo = () => {
               />
             </div>
 
-            <div className="w-full max-w-[285px] mt-6">
-              <p className="typography-h5 tracking-[1%] text-gray-500 font-medium pb-2">
+            <div className="mt-6 w-full max-w-[285px]">
+              <p className="typography-h5 pb-2 font-medium tracking-[1%] text-gray-500">
                 {service?.title}
               </p>
-              <p className="text-gray-500 typography-paragraph-medium leading-[150%] tracking-[1%]">
+              <p className="typography-paragraph-medium leading-[150%] tracking-[1%] text-gray-500">
                 {service?.description}
               </p>
             </div>
