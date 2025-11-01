@@ -28,9 +28,9 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
           <DialogTitle className="font-medium text-left typography-sub-h3 text-primary-500">
             Log In to Awwwesome
           </DialogTitle>
-          <p className="w-full max-w-sm mt-1 mb-4 text-grey-300 typography-paragraph-medium">
-            Login to Awwwesome and collaborate with companies small to large
-            around the world.
+          <p className="w-full max-w-sm  text-primary-500 typography-paragraph-small">
+            admin@example.com / password123 <br />
+            <span>viewer@example.com / password123</span>
           </p>
         </DialogHeader>
 
