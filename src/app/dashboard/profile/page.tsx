@@ -37,7 +37,7 @@ const ProfilePage = () => {
           onCancel={handleCancel}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
           <ProfileCard
             isEditing={isEditing}
             profileData={profileData}

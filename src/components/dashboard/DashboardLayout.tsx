@@ -47,11 +47,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 h-16 flex items-center justify-between px-4">
+      <div className="fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 lg:hidden">
         <button
           type="button"
           onClick={toggleMobileSidebar}
-          className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+          className="rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
         >
           {sidebarOpen ? (
             <X className="h-6 w-6" />
@@ -60,8 +60,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           )}
         </button>
         <h1 className="text-lg font-semibold text-gray-900">Dashboard</h1>
-        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-          <span className="text-blue-600 font-medium text-sm">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+          <span className="text-sm font-medium text-blue-600">
             {user?.email?.charAt(0).toUpperCase()}
           </span>
         </div>
@@ -71,10 +71,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       {sidebarOpen && (
         <button
           type="button"
-          className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-50 cursor-pointer"
+          className="bg-opacity-50 fixed inset-0 z-40 cursor-pointer bg-black lg:hidden"
           onClick={closeMobileSidebar}
           onKeyDown={(e) => {
-            if (e.key === 'Escape') {
+            if (e.key === "Escape") {
               closeMobileSidebar();
             }
           }}
@@ -82,8 +82,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         />
       )}
 
-      <Sidebar 
-        isCollapsed={sidebarCollapsed} 
+      <Sidebar
+        isCollapsed={sidebarCollapsed}
         onToggle={toggleSidebar}
         isOpen={sidebarOpen}
         onClose={closeMobileSidebar}

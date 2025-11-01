@@ -30,7 +30,7 @@ const ChartsPage = () => {
         />
 
         {/* Performance Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:mb-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {chartData.performance.map((metric) => (
             <StatCard
               key={metric?.metric}
@@ -43,18 +43,18 @@ const ChartsPage = () => {
         </div>
 
         {/* Main Charts */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:mb-8 sm:gap-6 xl:grid-cols-2">
           <UserGrowthChart data={chartData?.userGrowth} />
           <DeviceUsageChart data={chartData?.salesSummary} />
         </div>
 
         {/* Revenue Trend Line Chart */}
-        <div className="grid grid-cols-1 mb-6 sm:mb-8">
+        <div className="mb-6 grid grid-cols-1 sm:mb-8">
           <RevenueTrendChart data={chartData?.userGrowth} />
         </div>
 
         {/* Additional Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3">
           <DeviceUsageSection />
           <TopPagesSection />
           <UserRolesSection user={user} />

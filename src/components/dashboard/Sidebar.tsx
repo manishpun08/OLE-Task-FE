@@ -16,11 +16,11 @@ interface SidebarProps {
   onClose?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ 
-  isCollapsed, 
-  onToggle, 
-  isOpen = false, 
-  onClose = () => {} 
+const Sidebar: React.FC<SidebarProps> = ({
+  isCollapsed,
+  onToggle,
+  isOpen = false,
+  onClose = () => {},
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -131,7 +131,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 >
                   <Icon
                     className={`h-5 w-5 ${
-                      (isCollapsed && !isOpen) ? "mx-auto" : "mr-3"
+                      isCollapsed && !isOpen ? "mx-auto" : "mr-3"
                     } transition-colors ${
                       isActive
                         ? "text-blue-600"
@@ -154,11 +154,11 @@ const Sidebar: React.FC<SidebarProps> = ({
           type="button"
           onClick={handleLogoutClick}
           className={`w-full group flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors ${
-            (isCollapsed && !isOpen) ? "justify-center" : ""
+            isCollapsed && !isOpen ? "justify-center" : ""
           }`}
         >
           <LogOut
-            className={`h-5 w-5 ${(isCollapsed && !isOpen) ? "" : "mr-3"} transition-colors`}
+            className={`h-5 w-5 ${isCollapsed && !isOpen ? "" : "mr-3"} transition-colors`}
           />
           {(!isCollapsed || isOpen) && <span>Logout</span>}
         </button>
