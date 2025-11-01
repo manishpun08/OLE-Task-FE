@@ -1,34 +1,29 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { useField } from "formik";
 
 interface InputFieldProps {
   name: string;
   type?: string;
   placeholder: string;
   title?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isRequired?: boolean;
   isDisabled?: boolean;
   className?: string;
-  error?: string;
-  touched?: boolean;
 }
 
 const InputField = ({
   name,
-  type,
+  type = "text",
   placeholder,
   title,
-  value,
-  onChange,
   isRequired = false,
   isDisabled = false,
   className,
-  error,
-  touched,
 }: InputFieldProps) => {
+  const [field, meta] = useField(name);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (type === "number") {
       const allowedKeys = [
@@ -72,21 +67,19 @@ const InputField = ({
       <Input
         disabled={isDisabled}
         id={String(name)}
-        name={String(name)}
         type={type}
         placeholder={placeholder}
-        onChange={onChange}
-        value={value}
         onKeyDown={handleKeyDown}
         onWheel={handleWheel}
         className={cn(
           "typography-paragraph-small border-grey-100 focus-visible:border-primary-500 h-11.5 rounded-full border-[0.3px] px-4 focus-visible:ring-0",
           className
         )}
+        {...field}
       />
-      {touched && error && (
+      {meta.touched && meta.error && (
         <p className="pl-4 typography-paragraph-small text-error">
-          {error as string}
+          {meta.error as string}
         </p>
       )}
     </div>
