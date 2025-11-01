@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <ProfileHeader
           isEditing={isEditing}
           onEdit={handleEdit}
@@ -37,7 +37,7 @@ const ProfilePage = () => {
           onCancel={handleCancel}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           <ProfileCard
             isEditing={isEditing}
             profileData={profileData}

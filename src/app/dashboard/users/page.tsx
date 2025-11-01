@@ -80,36 +80,36 @@ const UsersPage = () => {
 
         {/* Summary Stats */}
         {!loading && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6">
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-              <h3 className="text-sm sm:text-lg font-medium text-gray-900 mb-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6">
+            <div className="bg-white rounded-lg shadow p-3 sm:p-4">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">
                 Total Users
               </h3>
-              <p className="text-xl sm:text-3xl font-bold text-blue-600">
+              <p className="text-lg sm:text-2xl font-bold text-blue-600">
                 {statistics.totalUsers}
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-              <h3 className="text-sm sm:text-lg font-medium text-gray-900 mb-2">
+            <div className="bg-white rounded-lg shadow p-3 sm:p-4">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">
                 Filtered Results
               </h3>
-              <p className="text-xl sm:text-3xl font-bold text-green-600">
+              <p className="text-lg sm:text-2xl font-bold text-green-600">
                 {statistics.filteredCount}
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-              <h3 className="text-sm sm:text-lg font-medium text-gray-900 mb-2">
+            <div className="bg-white rounded-lg shadow p-3 sm:p-4">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">
                 Companies
               </h3>
-              <p className="text-xl sm:text-3xl font-bold text-purple-600">
+              <p className="text-lg sm:text-2xl font-bold text-purple-600">
                 {statistics.companiesCount}
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-              <h3 className="text-sm sm:text-lg font-medium text-gray-900 mb-2">
+            <div className="bg-white rounded-lg shadow p-3 sm:p-4">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-900 mb-1 sm:mb-2">
                 Current Page
               </h3>
-              <p className="text-xl sm:text-3xl font-bold text-orange-600">
+              <p className="text-lg sm:text-2xl font-bold text-orange-600">
                 {statistics.currentPageDisplay}
               </p>
             </div>
