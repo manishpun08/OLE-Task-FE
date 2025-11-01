@@ -1,8 +1,7 @@
-import Footer from "@/common/Footer";
-import Header from "@/common/Header";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Providers from "./Provider";
+import ConditionalLayout from "./ConditionalLayout";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -24,16 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script src="https://accounts.google.com/gsi/client" async defer />
-      </head>
       <body className={`${poppins.variable} font-poppins antialiased`}>
         <Providers>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <div className="flex-grow">{children}</div>
-            <Footer />
-          </div>
+          <ConditionalLayout>{children}</ConditionalLayout>
         </Providers>
       </body>
     </html>

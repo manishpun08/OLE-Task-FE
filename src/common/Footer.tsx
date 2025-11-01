@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { footerData } from "@/data/footerData";
 
-const Footer = async () => {
+const Footer = () => {
   return (
     <footer>
       <div className="w-full bg-[#292838]">
