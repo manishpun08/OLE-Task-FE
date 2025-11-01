@@ -1,6 +1,6 @@
+import type { ProfileCardProps } from "../interface/profile.interface";
 import { ProfileAvatar } from "./ProfileAvatar";
 import { ProfileDetails } from "./ProfileDetails";
-import type { ProfileCardProps } from "../interface/profile.interface";
 
 export const ProfileCard = ({
   isEditing,

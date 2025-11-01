@@ -1,13 +1,13 @@
+import { TrendingUp } from "lucide-react";
 import {
   Area,
   AreaChart,
   CartesianGrid,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  ResponsiveContainer,
 } from "recharts";
-import { TrendingUp } from "lucide-react";
 import type { RevenueTrendChartProps } from "../interface/charts.interface";
 
 export const RevenueTrendChart = ({ data }: RevenueTrendChartProps) => (

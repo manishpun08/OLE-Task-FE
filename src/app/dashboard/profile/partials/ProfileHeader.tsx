@@ -7,7 +7,7 @@ export const ProfileHeader = ({
   onSave,
   onCancel,
 }: ProfileHeaderProps) => (
-  <div className="flex justify-between items-center mb-6">
+  <div className="mb-6 flex items-center justify-between">
     <div>
       <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
       <p className="text-gray-600">Manage your account information</p>
@@ -16,17 +16,17 @@ export const ProfileHeader = ({
       <button
         type="button"
         onClick={onEdit}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center space-x-2"
+        className="flex items-center space-x-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-blue-700"
       >
         <Edit2 className="h-4 w-4" />
-        <span>Edit Profile</span>
+        <span>Edit </span>
       </button>
     ) : (
       <div className="flex space-x-2">
         <button
           type="button"
           onClick={onSave}
-          className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center space-x-2"
+          className="flex items-center space-x-2 rounded-lg bg-green-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-green-700"
         >
           <Save className="h-4 w-4" />
           <span>Save</span>
@@ -34,7 +34,7 @@ export const ProfileHeader = ({
         <button
           type="button"
           onClick={onCancel}
-          className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center space-x-2"
+          className="flex items-center space-x-2 rounded-lg bg-gray-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-gray-700"
         >
           <X className="h-4 w-4" />
           <span>Cancel</span>

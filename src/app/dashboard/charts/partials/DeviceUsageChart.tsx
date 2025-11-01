@@ -1,12 +1,12 @@
-import {
-  PieChart as RechartsPieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
 import { PieChart } from "lucide-react";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart as RechartsPieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 import type { DeviceUsageChartProps } from "../interface/charts.interface";
 
 const COLORS = ["#3B82F6", "#10B981", "#F59E0B"];

@@ -1,20 +1,27 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
-import { PATH } from "@/core/constants/path";
-import { navigationItems } from "./SidebarItems";
 import { ChevronLeft, ChevronRight, LogOut, User } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import { PATH } from "@/core/constants/path";
+import { useAuth } from "@/hooks/useAuth";
+import { navigationItems } from "./SidebarItems";
 
 interface SidebarProps {
   isCollapsed: boolean;
   onToggle: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  isCollapsed,
+  onToggle,
+  isOpen = false,
+  onClose = () => {},
+}) => {
   const router = useRouter();
   const pathname = usePathname();
   const { user, logout } = useAuth();
@@ -43,15 +50,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
 
   return (
     <div
-      className={`fixed left-0 top-0 h-full bg-white shadow-lg border-r border-gray-200 transition-all duration-300 ease-in-out z-40 ${
-        isCollapsed ? "w-16" : "w-64"
-      }`}
+      className={`fixed left-0 top-0 h-full bg-white shadow-lg border-r border-gray-200 transition-all duration-300 ease-in-out z-50 ${
+        isCollapsed ? "lg:w-16" : "lg:w-64"
+      } ${
+        isOpen ? "w-64" : "w-0"
+      } lg:w-auto overflow-hidden lg:overflow-visible`}
     >
-      {/* Toggle Button */}
+      {/* Desktop Toggle Button */}
       <button
         type="button"
         onClick={onToggle}
-        className="absolute -right-3 top-6 bg-white border border-gray-200 rounded-full p-1 shadow-md hover:bg-gray-50 transition-colors"
+        className="hidden lg:block absolute -right-3 top-6 bg-white border border-gray-200 rounded-full p-1 shadow-md hover:bg-gray-50 transition-colors"
       >
         {isCollapsed ? (
           <ChevronRight className="h-4 w-4 text-gray-600" />
@@ -60,9 +69,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
         )}
       </button>
 
+      {/* Mobile Close Button */}
+      <button
+        type="button"
+        onClick={onClose}
+        className="lg:hidden absolute right-4 top-4 p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+
       {/* Header */}
-      <div className="h-16 flex items-center justify-center border-b border-gray-200">
-        {isCollapsed ? (
+      <div className="h-16 flex items-center justify-center border-b border-gray-200 mt-16 lg:mt-0">
+        {isCollapsed && !isOpen ? (
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">D</span>
           </div>
@@ -72,7 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
       </div>
 
       {/* User Info */}
-      {!isCollapsed && user && (
+      {(!isCollapsed || isOpen) && user && (
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -99,6 +117,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
               <li key={item.name}>
                 <Link
                   href={item.href}
+                  onClick={() => {
+                    // Close mobile sidebar when navigating on mobile
+                    if (isOpen) {
+                      onClose();
+                    }
+                  }}
                   className={`group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     isActive
                       ? "bg-blue-100 text-blue-700"
@@ -107,14 +131,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
                 >
                   <Icon
                     className={`h-5 w-5 ${
-                      isCollapsed ? "mx-auto" : "mr-3"
+                      isCollapsed && !isOpen ? "mx-auto" : "mr-3"
                     } transition-colors ${
                       isActive
                         ? "text-blue-600"
                         : "text-gray-400 group-hover:text-gray-500"
                     }`}
                   />
-                  {!isCollapsed && (
+                  {(!isCollapsed || isOpen) && (
                     <span className="truncate">{item.name}</span>
                   )}
                 </Link>
@@ -130,13 +154,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
           type="button"
           onClick={handleLogoutClick}
           className={`w-full group flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors ${
-            isCollapsed ? "justify-center" : ""
+            isCollapsed && !isOpen ? "justify-center" : ""
           }`}
         >
           <LogOut
-            className={`h-5 w-5 ${isCollapsed ? "" : "mr-3"} transition-colors`}
+            className={`h-5 w-5 ${isCollapsed && !isOpen ? "" : "mr-3"} transition-colors`}
           />
-          {!isCollapsed && <span>Logout</span>}
+          {(!isCollapsed || isOpen) && <span>Logout</span>}
         </button>
       </div>
 

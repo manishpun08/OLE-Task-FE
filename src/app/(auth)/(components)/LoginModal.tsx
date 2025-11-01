@@ -1,10 +1,10 @@
 "use client";
-import InputField from "@/components/form/InputField";
-import PasswordInputField from "@/components/form/PasswordInputField";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { FormikProvider } from "formik";
 import Link from "next/link";
+import InputField from "@/components/form/InputField";
+import PasswordInputField from "@/components/form/PasswordInputField";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { useLogin } from "../hooks/useLogin";
 
 interface Props {
@@ -25,10 +25,10 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
     >
       <DialogContent className="w-[36.1875rem] overflow-hidden rounded-3xl bg-white shadow-[0px_0px_12px_0px_#00000026]">
         <DialogHeader>
-          <DialogTitle className="font-medium text-left typography-sub-h3 text-primary-500">
+          <DialogTitle className="typography-sub-h3 text-primary-500 text-left font-medium">
             Log In to Awwwesome
           </DialogTitle>
-          <p className="w-full max-w-sm  text-primary-500 typography-paragraph-small">
+          <p className="text-primary-400 typography-paragraph-small w-full text-left lg:max-w-sm">
             admin@example.com / password123 <br />
             <span>viewer@example.com / password123</span>
           </p>
@@ -57,7 +57,7 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
             <div className="flex justify-end">
               <Link
                 onClick={onClose}
-                className="transition duration-300 ease-in-out typography-paragraph-medium text-grey-500 hover:text-primary-500 hover:underline"
+                className="typography-paragraph-medium text-grey-500 hover:text-primary-500 transition duration-300 ease-in-out hover:underline"
                 href="/#"
               >
                 Forgot Password?
@@ -80,14 +80,14 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onSuccess }) => {
         {/* Social Media Login Options */}
         <div className="flex items-center gap-4">
           <hr className="border-grey-100 flex-grow border-t-[0.4px]" />
-          <span className="text-sm text-black-200">Or</span>
+          <span className="text-black-200 text-sm">Or</span>
           <hr className="border-grey-100 flex-grow border-t-[0.4px]" />
         </div>
 
         {/* Sign In Link */}
-        <p className="pb-2 text-center typography-paragraph-medium">
+        <p className="typography-paragraph-medium pb-2 text-center">
           <span className="text-grey-300">Don’t have an account?</span>{" "}
-          <button type="button" className="cursor-pointer text-primary-500">
+          <button type="button" className="text-primary-500 cursor-pointer">
             Sign Up
           </button>
         </p>

@@ -2,9 +2,9 @@
 
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
+import { PATH } from "@/core/constants/path";
 import { LoginByPasswordSchema } from "@/helper/validation";
 import { showErrorMessage, showSuccessMessage } from "@/utils/toast";
-import { PATH } from "@/core/constants/path";
 
 interface IFormValues {
   username: string;
@@ -46,7 +46,7 @@ export const useLogin = ({ onSuccess }: { onSuccess: () => void }) => {
         // Check mock credentials
         const user = MOCK_CREDENTIALS.find(
           (cred) =>
-            cred.email === values.username && cred.password === values.password
+            cred.email === values.username && cred.password === values.password,
         );
 
         if (user) {
